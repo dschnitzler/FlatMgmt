@@ -1,0 +1,159 @@
+h1, h2, h3
+{
+ color:  #EC6400;
+}
+
+#rollover
+{
+	margin:				0 auto;
+	width:				1070px;
+	overflow:			auto;
+}
+
+#container
+{
+	margin:				0 auto;
+	width:				800px;
+	left -125px;
+	overflow:			auto;
+	background-color: 	#FFFFFF;
+	border:				1px solid #cccccc;
+	font-size: 			20px;
+	padding: 			 5px;
+}
+
+#header
+{
+	height: 			120px;
+	background-image:	url(./Logo.jpg);
+	background-repeat: 	no-repeat;
+	padding-left: 		100px;
+	text-align: 		right;
+	font-size: 			50px;
+	color:				#EC6400;
+}
+
+#menu
+{
+  float: left;
+	background-color: 	#EC6400;
+	color:				#FFFFFF;
+}
+
+#login
+{
+  float: right;
+	background-color: 	#EC6400;
+	color:				#FFFFFF;
+}
+
+#trim
+{
+	background-color: 	#EC6400;
+	color:				#FFFFFF;
+}
+
+#menu a:link, #menu a:visited
+{
+	color: 				#FFFFFF;
+	text-decoration: 	none;
+}
+
+#content
+{
+	padding-bottom: 	100px;
+}
+
+#shutdown
+{
+	float: right;
+	background-color:	#EC6400;
+	width: 				250px;
+	height: 			100px;
+	z-index:			10;
+}
+
+#content.li
+{
+	background-color: 	#FFF;
+}
+
+#template_error
+{
+	padding-top:			20px;
+	padding-bottom:			20px;
+	padding-left:			 5px;
+	background-color:	 	#FFCCCA;
+	border-top:			1px solid #DC143C;
+	border-bottom: 			1px solid #DC143C;
+	border-left: 			5px solid #DC143C;
+	border-right:			5px solid #DC143C;
+}
+
+#template_ok
+{
+	padding-top:			20px;
+	padding-bottom:			20px;
+	padding-left:			 5px;
+	background-color:	 	#D1F3D1;
+	border-top:			1px solid #82DE81;
+	border-bottom: 			1px solid #82DE81;
+	border-left: 			5px solid #82DE81;
+	border-right:			5px solid #82DE81;
+}
+
+#footer
+{
+	min-height: 			20px;
+	padding-bottom: 		5px;
+	padding-left:			5px;
+	text-align: 			center;
+}
+
+#footer a:link, #footer a:visited
+{
+	color: 				#000;
+	text-decoration: 		none;
+}
+
+body
+{
+	background-color:		 #F4F4F4;
+}
+
+#menu ul {
+	background-color: 		#EC6400;
+	color: 				#FFFFFF;
+ 	padding: 0;
+	margin: 0;
+  	list-style: none;
+  }
+  
+#menu li {
+	background-color: 		#EC6400;
+  	float: left;
+  	position: relative;
+  	padding-right: 10px;
+  }
+  
+#menu li ul {
+	background-color: 		#EC6400;
+  	display: none;
+  	position: absolute; 
+  	top: 1em;
+  	left: 0;
+  }
+  
+#menu li > ul {
+	background-color: 		#EC6400;
+ 	top: auto;
+ 	left: auto;
+ }
+
+#menu li:hover ul 
+{ 
+	background-color: 		#EC6400;
+	display: block; 
+	clear:left; 
+	color: #000;
+}
