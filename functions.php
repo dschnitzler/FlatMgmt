@@ -44,6 +44,7 @@ function WriteFooter()
 			<div id=\"footer\">
 			<a href=\"release_notes.php\">Version 2.0.0</a> | 
 			&copy; Daniel Schnitzler
+			<br> Hosted on <a href=\"http://raspberrypi.org\">Raspberry Pi</a>
 			</div>
 			</div>
 			</body>
