@@ -4,9 +4,6 @@ error_reporting(E_ALL);
 include('functions.php');
 $db = ConnectDB();
 
-$result1 = $db->query("SELECT * FROM gas");
-$rows1 = $result1->fetchAll();
-
 echo WriteHeader("&Uuml;bersicht", "general");
 echo "	<h2>Strom</h2>
 	<img src=\"Diagramm_energy.php?item=strom\" width=\"770\" height=\"300\">

@@ -23,8 +23,8 @@ function WriteHeader($title, $topic)
 					<li>
 						<a href='index.php'>&Uuml;bersicht</a>
 						<ul>
-							<a href='index_energy.php'><&Uuml;bersicht Energie></a>
-							<a href='index_money.php'><&Uuml;bersicht Finanzen></a>
+							<a href='index_energy.php'>Energie</a>
+							<a href='index_money.php'>Finanzen></a>
 						</ul>
 					</li> | 
 					<li> Eingabe
