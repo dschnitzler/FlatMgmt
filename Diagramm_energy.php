@@ -96,7 +96,7 @@ $graph->xaxis->title->Set("Zeit");
 $graph->xaxis->SetLabelAngle(45);
 $graph->yaxis->title->Set($unit);
 
-$avgline->SetColor("#009383");
+$avgline->SetColor("#000000");
 $barplot->SetColor("#EC6400");
 
 $avgline->SetWeight(4);
