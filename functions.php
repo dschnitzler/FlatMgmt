@@ -87,4 +87,51 @@ function FindIndex($array, $value)
 	return -1;
 }
 
+function CalculateCostStrom()
+{
+	$db = ConnectDB();
+	$result1 = $db->query("SELECT * FROM electricity ORDER BY date asc");
+	$rows1 = $result1->fetchAll();
+
+	$date_min	= $rows1[0]['date'];
+	$value_min	= $rows1[0]['value'];
+	$datetime_min 	= new DateTime($date_min);
+
+	$date_max	= $rows1[sizeof($rows1)-1]['date'];
+	$value_max	= $rows1[sizeof($rows1)-1]['value'];
+	$datetime_max 	= new DateTime($date_max);
+
+	$interval  	= date_diff($datetime_min, $datetime_max);
+	$average_gen	= ($value_max - $value_min)/($interval->format('%a'));
+	
+	//StromSta(R) OekoPlus
+	if($average_gen * 12 <= 2800)
+	{
+		$arbeitspreis 	= 27.64;
+		$grundpreis 	= 73.02;
+	} 
+	elseif($average_gen * 12 <= 6000)
+	{
+		$arbeitspreis 	= 26.97;
+		$grundpreis 	= 92.02;
+	}
+	elseif($average_gen * 12 <= 9000)
+	{
+		$arbeitspreis 	= 26.85;
+		$grundpreis 	= 99.16;
+	}
+	elseif($average_gen * 12 <= 12000)
+	{
+		$arbeitspreis 	= 26.75;
+		$grundpreis 	= 107.73;
+	}
+	else
+	{
+		$arbeitspreis 	= 26.67;
+		$grundpreis 	= 117.73;
+	}
+	
+	$cost = $grundpreis + $average_gen*$arbeitspreis/100;
+	return($cost);
+}
 ?>
