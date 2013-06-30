@@ -86,8 +86,8 @@ $graph->SetScale("datlin");
 $avgline  	= new Lineplot($ydata_avg, $xdata);
 $barplot	= new Barplot($ydata_bar, $xdata);
 
-$graph->Add($avgline);
 $graph->Add($barplot);
+$graph->Add($avgline);
 
 $graph->SetMargin(60,20,30,90);
 $graph->title->Set($item."verbrauch");
@@ -96,7 +96,7 @@ $graph->xaxis->title->Set("Zeit");
 $graph->xaxis->SetLabelAngle(45);
 $graph->yaxis->title->Set($unit);
 
-$avgline->SetColor("#000000");
+$avgline->SetColor("#009383");
 $barplot->SetColor("#EC6400");
 
 $avgline->SetWeight(4);
