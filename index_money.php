@@ -15,6 +15,9 @@ echo "
     		* Internet     20&euro;<br>
     		* Strom/Gas    70&euro;<br>
     		* Lebensmittel 200&euro;<br>
+			* GEZ 17,98&euro;<br>
+			------------------------ <br>
+			947,98&euro;
     	</ul>
 	</div>
 	 ";
