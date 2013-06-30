@@ -24,7 +24,7 @@ function WriteHeader($title, $topic)
 						<a href='index.php'>&Uuml;bersicht</a>
 						<ul>
 							<a href='index_energy.php'>Energie</a>
-							<a href='index_money.php'>Finanzen></a>
+							<a href='index_money.php'>Finanzen</a>
 						</ul>
 					</li> | 
 					<li> Eingabe
