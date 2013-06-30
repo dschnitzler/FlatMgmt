@@ -105,22 +105,22 @@ function CalculateCostStrom()
 	$average_gen	= ($value_max - $value_min)/($interval->format('%a'));
 	
 	//StromSta(R) OekoPlus
-	if($average_gen * 12 <= 2800)
+	if($average_gen * 365 <= 2800)
 	{
 		$arbeitspreis 	= 27.64;
 		$grundpreis 	= 73.02;
 	} 
-	elseif($average_gen * 12 <= 6000)
+	elseif($average_gen * 365 <= 6000)
 	{
 		$arbeitspreis 	= 26.97;
 		$grundpreis 	= 92.02;
 	}
-	elseif($average_gen * 12 <= 9000)
+	elseif($average_gen * 365 <= 9000)
 	{
 		$arbeitspreis 	= 26.85;
 		$grundpreis 	= 99.16;
 	}
-	elseif($average_gen * 12 <= 12000)
+	elseif($average_gen * 365 <= 12000)
 	{
 		$arbeitspreis 	= 26.75;
 		$grundpreis 	= 107.73;
@@ -131,7 +131,7 @@ function CalculateCostStrom()
 		$grundpreis 	= 117.73;
 	}
 	
-	$cost = $grundpreis + $average_gen*$arbeitspreis/100;
+	$cost = $grundpreis + $average_gen*30*$arbeitspreis/100;
 	return($cost);
 }
 ?>
