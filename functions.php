@@ -131,7 +131,45 @@ function CalculateCostStrom()
 		$grundpreis 	= 117.73;
 	}
 	
-	$cost = $grundpreis + $average_gen*30*$arbeitspreis/100;
-	return($cost);
+	$cost = $grundpreis/12 + $average_gen*30*$arbeitspreis/100;
+	return(round($cost,2));
+}
+
+function CalculateCostGas()
+{
+	$db 		= ConnectDB();
+	$result1 	= $db->query("SELECT * FROM gas ORDER BY date asc");
+	$rows1 		= $result1->fetchAll();
+
+	$date_min		= $rows1[0]['date'];
+	$value_min		= $rows1[0]['value'];
+	$datetime_min 	= new DateTime($date_min);
+
+	$date_max		= $rows1[sizeof($rows1)-1]['date'];
+	$value_max		= $rows1[sizeof($rows1)-1]['value'];
+	$datetime_max 	= new DateTime($date_max);
+
+	$interval  		= date_diff($datetime_min, $datetime_max);
+	$average_gen	= ($value_max - $value_min)/($interval->format('%a'));
+	
+	//GasSta(R) OekoPlus
+	if($average_gen * 365 <= 5384)
+	{
+		$arbeitspreis 	= 8.94;
+		$grundpreis 	= 39.98;
+	} 
+	elseif($average_gen * 365 <= 12280)
+	{
+		$arbeitspreis 	= 7.10;
+		$grundpreis 	= 138.66;
+	}
+	else
+	{
+		$arbeitspreis 	= 6.75;
+		$grundpreis 	= 182.50;
+	}
+	
+	$cost = $grundpreis/12 + $average_gen*30*$arbeitspreis/100;
+	return(round($cost, 2));
 }
 ?>
