@@ -89,19 +89,19 @@ function FindIndex($array, $value)
 
 function CalculateCostStrom()
 {
-	$db = ConnectDB();
-	$result1 = $db->query("SELECT * FROM electricity ORDER BY date asc");
-	$rows1 = $result1->fetchAll();
+	$db 		= ConnectDB();
+	$result1 	= $db->query("SELECT * FROM electricity ORDER BY date asc");
+	$rows1 		= $result1->fetchAll();
 
-	$date_min	= $rows1[0]['date'];
-	$value_min	= $rows1[0]['value'];
+	$date_min		= $rows1[0]['date'];
+	$value_min		= $rows1[0]['value'];
 	$datetime_min 	= new DateTime($date_min);
 
-	$date_max	= $rows1[sizeof($rows1)-1]['date'];
-	$value_max	= $rows1[sizeof($rows1)-1]['value'];
+	$date_max		= $rows1[sizeof($rows1)-1]['date'];
+	$value_max		= $rows1[sizeof($rows1)-1]['value'];
 	$datetime_max 	= new DateTime($date_max);
 
-	$interval  	= date_diff($datetime_min, $datetime_max);
+	$interval  		= date_diff($datetime_min, $datetime_max);
 	$average_gen	= ($value_max - $value_min)/($interval->format('%a'));
 	
 	//StromSta(R) OekoPlus
