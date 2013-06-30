@@ -29,8 +29,8 @@ function WriteHeader($title, $topic)
 					</li> | 
 					<li> Eingabe
 						<ul>
-							<li><a href='input_meter.php?item=strom'>Strom</a></li>
-							<li><a href='input_meter.php?item=gas'>Gas</a></li>
+							<li><a href='input_energy.php?item=strom'>Strom</a></li>
+							<li><a href='input_energy.php?item=gas'>Gas</a></li>
 							<li><a href='input_money.php'>Finanzen</a></li>
 						</ul>
 					</li>
