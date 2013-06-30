@@ -20,7 +20,13 @@ function WriteHeader($title, $topic)
 			&nbsp;
 			<div id='menu'>
 				<ul>
-					<li><a href='index.php'>&Uuml;bersicht</a></li> | 
+					<li>
+						<a href='index.php'>&Uuml;bersicht</a>
+						<ul>
+							<a href='index_energy.php'><&Uuml;bersicht Energie></a>
+							<a href='index_money.php'><&Uuml;bersicht Finanzen></a>
+						</ul>
+					</li> | 
 					<li> Eingabe
 						<ul>
 							<li><a href='input_meter.php?item=strom'>Strom</a></li>
