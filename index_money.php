@@ -7,7 +7,9 @@ $db = ConnectDB();
 $miete 			= 640;
 $internet 		= 20;
 $strom_gas 		= 70;
-$lebensmittel 	= 200;
+
+$lebensmittel1  = $db->query("SELECT AVG(sum_values) as average FROM (SELECT SUM(entry_value) AS sum_values FROM money_entries WHERE entry_category == 1 GROUP BY strftime(\"01.%m.%Y\", entry_date), entry_category)";
+$lebensmittel 	= $lebensmittel1[0]["average"];
 $gez 			= 17.98;
 $gesamt = ($miete + $internet + $strom_gas + $lebensmittel + $gez);
 
@@ -24,7 +26,8 @@ echo "
     		* Lebensmittel ".$lebensmittel.	"&euro;<br>
 			* GEZ 		   ".$gez.			"&euro;<br>
 			------------------------ <br>
-			".$gesamt."&euro;
+			Gesamt:        ".$gesamt."&euro;<br>
+			Abschlag: 	   ".($gesamt/2)."&euro;
     	</ul>
 	</div>
 	 ";
