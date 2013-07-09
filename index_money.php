@@ -8,7 +8,8 @@ $miete 			= 640;
 $internet 		= 20;
 $strom_gas 		= 70;
 
-$lebensmittel1  = $db->query("SELECT AVG(sum_values) as average FROM (SELECT SUM(entry_value) AS sum_values FROM money_entries WHERE entry_category == 1 GROUP BY strftime(\"01.%m.%Y\", entry_date), entry_category)";
+$lebensmittel1  = $db->query("SELECT AVG(sum_values) as average FROM (SELECT SUM(entry_value) AS sum_values FROM money_entries WHERE entry_category == 1 GROUP BY strftime(\"01.%m.%Y\", entry_date))";
+$lebensmittel1  = $lebensmittel1->fetchAll();
 $lebensmittel 	= $lebensmittel1[0]["average"];
 $gez 			= 17.98;
 $gesamt = ($miete + $internet + $strom_gas + $lebensmittel + $gez);
