@@ -26,13 +26,13 @@ $html = "<form item=\"id\" action=\"action.php?action=input_money\" method=\"pos
 			<tr>
 				<td>Monat:</td>
 				<td>
-					<input name =\"month\" type=\"number\" size=\"4\" maxlength=\"2\" required>
+					<input name =\"month\" type=\"number\" size=\"4\" maxlength=\"2\" value=\"".date("m")."\" required>
 				</td>
 			</tr>
 			<tr>
 				<td>Jahr:</td>
 				<td>
-					<input name=\"year\" type=\"number\" size=\"4\" maxlength=\"4\" minlength=\"4\" value=\"2013\" required>
+					<input name=\"year\" type=\"number\" size=\"4\" maxlength=\"4\" minlength=\"4\" value=\"".date("Y")."\" required>
 				</td>
 			</tr>
 			<tr>

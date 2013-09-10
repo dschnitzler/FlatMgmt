@@ -2,7 +2,6 @@
 ini_set('display_errors', true);
 error_reporting(E_ALL);
 include('functions.php');
-$db = ConnectDB();
 
 echo WriteHeader("&Uuml;bersicht", "general");
 echo "	<h2>Strom</h2>

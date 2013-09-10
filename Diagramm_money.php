@@ -8,7 +8,7 @@ error_reporting(E_ALL);
 	include('functions.php');
 
 $db = ConnectDB();
-$entry_categories1 = $db->query("SELECT category_id, category_name FROM money_categories");
+$entry_categories1 = $db->query("SELECT category_id, category_name, category_colour FROM money_categories");
 $entry_categories  = $entry_categories1->fetchAll();
 
 $entry_dates1 = $db->query("SELECT MIN(strftime(\"01.%m.%Y\", entry_date)) AS date_min, MAX(strftime(\"01.%m.%Y\", entry_date)) AS date_max from money_entries");
@@ -56,6 +56,7 @@ for($i=0; $i<sizeof($entries);$i++)
 {
 	$barplots[$i] = new BarPlot($ydata[$i]);
 	$barplots[$i]->SetLegend($entry_categories[$i]['category_name']);
+	$barplots[$i]->SetColor('blue');
 }
 
 $graph	= new Graph(770,300,"auto");
@@ -73,5 +74,5 @@ $graph->yaxis->title->Set("€");
 
 $graph->SetShadow();
 //$graph->legend->Pos(0.05,0.1);
-$graph->Stroke();
+	$graph->Stroke();
 ?>
