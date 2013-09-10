@@ -137,6 +137,9 @@ function CalculateCostStrom()
 
 function CalculateCostGas()
 {
+	$z_zahl  = 0.9524;
+	$AB_wert = 11.160; 
+
 	$db 		= ConnectDB();
 	$result1 	= $db->query("SELECT * FROM gas ORDER BY date asc");
 	$rows1 		= $result1->fetchAll();
@@ -152,13 +155,15 @@ function CalculateCostGas()
 	$interval  		= date_diff($datetime_min, $datetime_max);
 	$average_gen	= ($value_max - $value_min)/($interval->format('%a'));
 	
+	$average_kWh 	= $average_gen * $z_zahl * $AB_wert;
+	
 	//GasSta(R) OekoPlus
-	if($average_gen * 365 <= 5384)
+	if($average_kWh * 365 <= 5384)
 	{
 		$arbeitspreis 	= 8.94;
 		$grundpreis 	= 39.98;
 	} 
-	elseif($average_gen * 365 <= 12280)
+	elseif($average_kWh * 365 <= 12280)
 	{
 		$arbeitspreis 	= 7.10;
 		$grundpreis 	= 138.66;
@@ -169,7 +174,7 @@ function CalculateCostGas()
 		$grundpreis 	= 182.50;
 	}
 	
-	$cost = $grundpreis/12 + $average_gen*30*$arbeitspreis/100;
+	$cost = $grundpreis/12 + $average_kWh*30*$arbeitspreis/100; // Grundpreis/12 Monate + Tagesdurchschnitt*30Tage*Arbeitspreis in Cent
 	return(round($cost, 2));
 }
 ?>
