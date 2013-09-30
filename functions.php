@@ -87,7 +87,7 @@ function FindIndex($array, $value)
 	return -1;
 }
 
-function CalculateCostStrom()
+function GetAverageStrom()
 {
 	$db 		= ConnectDB();
 	$result1 	= $db->query("SELECT * FROM electricity ORDER BY date asc");
@@ -103,6 +103,34 @@ function CalculateCostStrom()
 
 	$interval  		= date_diff($datetime_min, $datetime_max);
 	$average_gen	= ($value_max - $value_min)/($interval->format('%a'));
+	return $average_gen;
+}
+
+function GetAverageGas()
+{
+	$z_zahl  = 0.9524;
+	$AB_wert = 11.160; 
+
+	$db 		= ConnectDB();
+	$result1 	= $db->query("SELECT * FROM gas ORDER BY date asc");
+	$rows1 		= $result1->fetchAll();
+
+	$date_min		= $rows1[0]['date'];
+	$value_min		= $rows1[0]['value'];
+	$datetime_min 	= new DateTime($date_min);
+
+	$date_max		= $rows1[sizeof($rows1)-1]['date'];
+	$value_max		= $rows1[sizeof($rows1)-1]['value'];
+	$datetime_max 	= new DateTime($date_max);
+
+	$interval  		= date_diff($datetime_min, $datetime_max);
+	$average_gen	= ($value_max - $value_min)/($interval->format('%a'));
+	
+	$average_kWh 	= $average_gen * $z_zahl * $AB_wert;
+	return $average_kWh;
+}
+function GetCostStromStawag($average_gen)
+{
 	
 	//StromSta(R) OekoPlus
 	if($average_gen * 365 <= 2800)
@@ -135,28 +163,8 @@ function CalculateCostStrom()
 	return(round($cost,2));
 }
 
-function CalculateCostGas()
-{
-	$z_zahl  = 0.9524;
-	$AB_wert = 11.160; 
-
-	$db 		= ConnectDB();
-	$result1 	= $db->query("SELECT * FROM gas ORDER BY date asc");
-	$rows1 		= $result1->fetchAll();
-
-	$date_min		= $rows1[0]['date'];
-	$value_min		= $rows1[0]['value'];
-	$datetime_min 	= new DateTime($date_min);
-
-	$date_max		= $rows1[sizeof($rows1)-1]['date'];
-	$value_max		= $rows1[sizeof($rows1)-1]['value'];
-	$datetime_max 	= new DateTime($date_max);
-
-	$interval  		= date_diff($datetime_min, $datetime_max);
-	$average_gen	= ($value_max - $value_min)/($interval->format('%a'));
-	
-	$average_kWh 	= $average_gen * $z_zahl * $AB_wert;
-	
+function GetCostGasStawag($average_kWh)
+{	
 	//GasSta(R) OekoPlus
 	if($average_kWh * 365 <= 5384)
 	{
