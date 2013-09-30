@@ -5,29 +5,34 @@ include('functions.php');
 $db 	= ConnectDB();
 $date 	= date("Y-m-01");
 
+$d_start    = new DateTime('2012-12-01');
+$d_end      = new DateTime($date);
+$difference = $d_start->diff($d_end); 
+$diff_month = $difference->format('%m'); 
+
 // Kosten für die Miete
 $miete 			= 640;
 
 // Berechnung der durchschnittlichen Internetkosten. (Die erste Rechnung wird ignoriert, da sie die Fritzbox enthielt.
-$internet1  	= $db->query("SELECT AVG(sum_values) as average FROM (SELECT SUM(entry_value) AS sum_values FROM money_entries WHERE entry_category == 4 AND entry_date < '".$date."' AND entry_date >= '2013-03-01' GROUP BY strftime(\"01.%m.%Y\", entry_date))");
+$internet1  	= $db->query("SELECT SUM(entry_value) as sum FROM money_entries WHERE entry_category == 4 AND entry_date < '".$date."' AND entry_date >= '2013-03-01'");
 $internet1  	= $internet1->fetchAll();
-$internet 		= $internet1[0]["average"];
-
+$internet 		= $internet1[0]["sum"]/($diff_month-3);
 
 // Kosten für Strom und Gas
 $strom_gas 		= 50;
 
 // Berechnung der durchschnittlichen Kosten für Lebensmittel.
-$lebensmittel1  = $db->query("SELECT AVG(sum_values) as average FROM (SELECT SUM(entry_value) AS sum_values FROM money_entries WHERE entry_category == 1 AND entry_date < '".$date."' GROUP BY strftime(\"01.%m.%Y\", entry_date))");
+$lebensmittel1  = $db->query("SELECT SUM(entry_value) AS sum FROM money_entries WHERE entry_category == 1 AND entry_date < '".$date."'");
 $lebensmittel1  = $lebensmittel1->fetchAll();
-$lebensmittel 	= $lebensmittel1[0]["average"];
+$lebensmittel 	= $lebensmittel1[0]["sum"]/($diff_month-2);
 
 // Kosten für die Rundfunkgebühren
 $gez 			= 17.98;
 
-$einrichtung1  = $db->query("SELECT AVG(sum_values) as average FROM (SELECT SUM(entry_value) AS sum_values FROM money_entries WHERE entry_category == 3 AND entry_date < '".$date."' AND entry_value < 100 GROUP BY strftime(\"01.%m.%Y\", entry_date))");
+// Kosten für die Einrichtung / Wohnungsdekoration
+$einrichtung1  = $db->query("SELECT SUM(entry_value) AS sum FROM money_entries WHERE entry_category == 3 AND entry_date < '".$date."' AND entry_value < 100");
 $einrichtung1  = $einrichtung1->fetchAll();
-$einrichtung 	= $einrichtung1[0]["average"];
+$einrichtung 	= $einrichtung1[0]["sum"]/($diff_month-1);
 
 
 $gesamt = ($miete + $internet + $strom_gas + $lebensmittel + $gez + $einrichtung);
