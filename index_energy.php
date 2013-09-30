@@ -7,8 +7,8 @@ $avg_strom 	= GetAverageStrom();
 $avg_gas	= GetAverageGas();
 
 $avg_strom_stawag 	= GetCostStromStawag($avg_strom);
+$avg_gas_stawag 	= GetCostGasStawag($avg_gas);
 
-$avg_gas_stawag 	= GetCostStromStawag($avg_gas);
 echo WriteHeader("Energie", "energy");
 echo "	<h2>Strom</h2>
 	<img src=\"Diagramm_energy.php?item=strom\" width=\"770\" height=\"300\">
