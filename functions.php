@@ -48,7 +48,7 @@ function WriteFooter()
 {
 	$html = "</div>
 			<div id=\"footer\">
-			<a href=\"release_notes.php\">Version 2.0.0</a> | 
+			<a href=\"release_notes.php\">Version 2.1.0</a> | 
 			&copy; Daniel Schnitzler
 			<br> Hosted on <a href=\"http://raspberrypi.org\">Raspberry Pi</a>
 			</div>
@@ -87,12 +87,11 @@ function FindIndex($array, $value)
 	return -1;
 }
 
-function GetAverageStrom()
+function GetAverageStrom($start_date, $end_date)
 {
 	$db 		= ConnectDB();
-	$result1 	= $db->query("SELECT * FROM electricity ORDER BY date asc");
+	$result1 	= $db->query("SELECT * FROM electricity WHERE date >= '".$start_date."' AND date <'".$end_date."' ORDER BY date asc");
 	$rows1 		= $result1->fetchAll();
-
 	$date_min		= $rows1[0]['date'];
 	$value_min		= $rows1[0]['value'];
 	$datetime_min 	= new DateTime($date_min);
@@ -106,13 +105,13 @@ function GetAverageStrom()
 	return $average_gen;
 }
 
-function GetAverageGas()
+function GetAverageGas($start_date, $end_date)
 {
 	$z_zahl  = 0.9524;
 	$AB_wert = 11.160; 
 
 	$db 		= ConnectDB();
-	$result1 	= $db->query("SELECT * FROM gas ORDER BY date asc");
+	$result1 	= $db->query("SELECT * FROM gas WHERE date >= '".$start_date."' AND date <'".$end_date."' ORDER BY date asc");
 	$rows1 		= $result1->fetchAll();
 
 	$date_min		= $rows1[0]['date'];

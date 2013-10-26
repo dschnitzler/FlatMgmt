@@ -25,7 +25,7 @@ $dates2 		= array();
 for($i=0; $i<=$interval->format('%m');$i++)
 {
 	$dates[$i]  = date("01.m.Y", strtotime($min_date." + ".$i." months"));
-	$dates2[$i] = date("F Y", strtotime($min_date." + ".$i." months"));
+	$dates2[$i] = date("M Y", strtotime($min_date." + ".$i." months"));
 }
 
 $ydata = array();

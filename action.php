@@ -19,12 +19,12 @@ else
 		case ("input_gas"):
 			$head = "Eingabe eines Gasz&auml;hlerstandes";
 			$html = input_gas($html);
-			$topic= "meter";
+			$topic= "energy";
 			break;
 		case ("input_strom"):
 			$head = "Eingabe eines Stromz&auml;hlerstandes";
 			$html = input_strom($html);
-			$topic= "meter";
+			$topic= "energy";
 			break;
 		case ("input_money"):
 			$head = "Eingabe von Finanzen";

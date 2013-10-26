@@ -32,13 +32,23 @@ else
 	//$html = WriteError("Z&auml;hlerauswahl kann nicht interpretiert werden.");
 }
 
+if (isset($_GET['start_date']))
+{	$start_date = $_GET['start_date'];}
+else
+{	$start_date = "2013-01-01";}
+
+if (isset($_GET['end_date']))
+{	$end_date = $_GET['end_date'];}
+else
+{	$end_date = date("Y-m")."-01";}
+
 if ($error == TRUE)
 {
 	return;
 }
 
 $db = ConnectDB();
-$result1 = $db->query("SELECT * FROM ".$table." ORDER BY date asc");
+$result1 = $db->query("SELECT * FROM ".$table." WHERE date >= '".$start_date."' AND date <'".$end_date."' ORDER BY date asc");
 $rows1 = $result1->fetchAll();
 
 $date_min	= $rows1[0]['date'];
@@ -65,11 +75,11 @@ for ($i=1;  $i < sizeof($rows1); $i++)
 {
 	$date_min		= $rows1[$i-1]['date'];
 	$value_min		= $rows1[$i-1]['value'];
-	$datetime_min 		= new DateTime($date_min);
+	$datetime_min 	= new DateTime($date_min);
 
 	$date_max		= $rows1[$i]['date'];
 	$value_max		= $rows1[$i]['value'];
-	$datetime_max 		= new DateTime($date_max);
+	$datetime_max 	= new DateTime($date_max);
 	$interval  		= date_diff($datetime_min, $datetime_max);
 	$average		= ($value_max - $value_min)/($interval->format('%a'));
 	for ($j=1;  $j <= $interval->format('%a'); $j++)
