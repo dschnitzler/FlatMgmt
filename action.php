@@ -47,21 +47,42 @@ function input_gas($html)
 {
 	$error = FALSE;
 	if (isset($_POST['day']))
+	{
 		$day 		= $_POST['day'];
+		if ($day < 1 || $day > 31)
+		{
+			$html .= WriteError("Ung&uuml;ltiger Tag.");
+			$error = TRUE;
+		}
+	}
 	else
 	{
 		$html .= WriteError("Tag wurde nicht angegeben.");
 		$error = TRUE;
 	}
 	if (isset($_POST['month']))
+	{
 		$month 		= $_POST['month'];
+		if ($month < 1 || $month > 12)
+		{
+			$html .= WriteError("Ung&uuml;ltiger Monat.");
+			$error = TRUE;
+		}
+	}
 	else
 	{
 		$html .= WriteError("Monat wurde nicht angegeben.");
 		$error = TRUE;
 	}
 	if (isset($_POST['year']))
+	{
 		$year 		= $_POST['year'];
+		if ($year < 2013)
+		{
+			$html .= WriteError("Ung&uuml;ltiges Jahr.");
+			$error = TRUE;
+		}
+	}
 	else
 	{
 		$html .= WriteError("Jahr wurde nicht angegeben.");
@@ -109,21 +130,42 @@ function input_strom($html)
 {
 	$error = FALSE;
 	if (isset($_POST['day']))
+	{
 		$day 		= $_POST['day'];
+		if ($day < 1 || $day > 31)
+		{
+			$html .= WriteError("Ung&uuml;ltiger Tag.");
+			$error = TRUE;
+		}
+	}
 	else
 	{
 		$html .= WriteError("Tag wurde nicht angegeben.");
 		$error = TRUE;
 	}
 	if (isset($_POST['month']))
+	{
 		$month 		= $_POST['month'];
+		if ($month < 1 || $month > 12)
+		{
+			$html .= WriteError("Ung&uuml;ltiger Monat.");
+			$error = TRUE;
+		}
+	}
 	else
 	{
 		$html .= WriteError("Monat wurde nicht angegeben.");
 		$error = TRUE;
 	}
 	if (isset($_POST['year']))
+	{
 		$year 		= $_POST['year'];
+		if ($year < 2013)
+		{
+			$html .= WriteError("Ung&uuml;ltiges Jahr.");
+			$error = TRUE;
+		}
+	}
 	else
 	{
 		$html .= WriteError("Jahr wurde nicht angegeben.");
@@ -170,36 +212,42 @@ function input_money($html)
 {
 	$error = FALSE;
 	if (isset($_POST['day']))
+	{
 		$day 		= $_POST['day'];
 		if ($day < 1 || $day > 31)
 		{
 			$html .= WriteError("Ung&uuml;ltiger Tag.");
 			$error = TRUE;
 		}
+	}
 	else
 	{
 		$html .= WriteError("Tag wurde nicht angegeben.");
 		$error = TRUE;
 	}
 	if (isset($_POST['month']))
+	{
 		$month 		= $_POST['month'];
 		if ($month < 1 || $month > 12)
 		{
 			$html .= WriteError("Ung&uuml;ltiger Monat.");
 			$error = TRUE;
 		}
+	}
 	else
 	{
 		$html .= WriteError("Monat wurde nicht angegeben.");
 		$error = TRUE;
 	}
 	if (isset($_POST['year']))
+	{
 		$year 		= $_POST['year'];
 		if ($year < 2013)
 		{
 			$html .= WriteError("Ung&uuml;ltiges Jahr.");
 			$error = TRUE;
 		}
+	}
 	else
 	{
 		$html .= WriteError("Jahr wurde nicht angegeben.");
@@ -220,12 +268,14 @@ function input_money($html)
 		$error = TRUE;
 	}
 	if (isset($_POST['value']))
+	{
 		$value	= $_POST['value'];
 		if ($value <= 0)
 		{
 			$html .= WriteError("Ung&uuml;ltiger Betrag.");
 			$error = TRUE;
 		}
+	}
 	else
 	{
 		$html .= WriteError("Betrag wurde nicht angegeben.");

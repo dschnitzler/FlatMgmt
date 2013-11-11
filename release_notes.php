@@ -4,6 +4,12 @@ error_reporting(E_ALL);
 include('functions.php');
 echo WriteHeader("Release Notes", "general");
 
+echo "<h2>Wohnungsverwaltung 2.1.2 (11.11.2013)</h2>
+<p>Dieses Release bietet folgendes Bugfixing:</p>
+<ul>
+	<li> Bei Ung&uuml;ltigen Werten (z.B. Betrag) in der Eingabemaske Energie werden Fehler angezeigt.</li>
+</ul>";
+
 echo "<h2>Wohnungsverwaltung 2.1.1 (06.11.2013)</h2>
 <p>Dieses Release bietet folgendes Bugfixing:</p>
 <ul>
