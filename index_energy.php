@@ -21,7 +21,7 @@ else
 if (isset($_POST['end_year']))
 {	$end_year = $_POST['end_year'];}
 else
-{	$end_year = date("Y");}
+{	$end_year = date('Y',mktime(0,0,0,date("m")+1,date("d"),date("Y")));}
 
 $start_date = $start_year."-".$start_month."-01";
 $end_date 	= $end_year.  "-".$end_month.  "-01";

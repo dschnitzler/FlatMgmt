@@ -8,7 +8,7 @@ $date 	= date("Y-m-01");
 $d_start    = new DateTime('2012-12-01');
 $d_end      = new DateTime($date);
 $difference = $d_start->diff($d_end); 
-$diff_month = $difference->format('%m'); 
+$diff_month = $difference->format('%m') + 12*$difference->format('%y'); 
 
 // Kosten für die Miete
 $miete 			= 640;

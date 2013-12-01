@@ -4,6 +4,13 @@ error_reporting(E_ALL);
 include('functions.php');
 echo WriteHeader("Release Notes", "general");
 
+echo "<h2>Wohnungsverwaltung 2.1.3 (01.12.2013)</h2>
+<p>Dieses Release bietet folgendes Bugfixing:</p>
+<ul>
+	<li> Ansicht Finanzen: Fehler bei der Berechnung von Zeitintervallen behoben.</li>
+	<li> Ansicht Energie: Fehler bei der Berechnung des Standard-Enddatums behoben.</li>
+</ul>";
+
 echo "<h2>Wohnungsverwaltung 2.1.2 (11.11.2013)</h2>
 <p>Dieses Release bietet folgendes Bugfixing:</p>
 <ul>
