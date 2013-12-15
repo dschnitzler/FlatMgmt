@@ -48,7 +48,7 @@ function WriteFooter()
 {
 	$html = "</div>
 			<div id=\"footer\">
-			<a href=\"release_notes.php\">Version 2.1.3</a> | 
+			<a href=\"release_notes.php\">Version 2.1.4</a> | 
 			&copy; Daniel Schnitzler
 			<br> Hosted on <a href=\"http://raspberrypi.org\">Raspberry Pi</a>
 			</div>
@@ -89,10 +89,9 @@ function FindIndex($array, $value)
 
 function GetAverageStrom($start_date, $end_date)
 {
-	$error 			= FALSE;
-	$db 			= ConnectDB();
-	$result1 		= $db->query("SELECT * FROM electricity WHERE date >= '".$start_date."' AND date <'".$end_date."' ORDER BY date asc");
-	$rows1 			= $result1->fetchAll();
+	$db 		= ConnectDB();
+	$result1 	= $db->query("SELECT * FROM electricity WHERE date >= '".$start_date."' AND date <'".$end_date."' ORDER BY date asc");
+	$rows1 		= $result1->fetchAll();
 	$date_min		= $rows1[0]['date'];
 	$value_min		= $rows1[0]['value'];
 	$datetime_min 	= new DateTime($date_min);
@@ -103,7 +102,7 @@ function GetAverageStrom($start_date, $end_date)
 
 	$interval  		= date_diff($datetime_min, $datetime_max);
 	$average_gen	= ($value_max - $value_min)/($interval->format('%a'));
-	return 	array($average_gen, $error);
+	return 	$average_gen;
 }
 
 function GetAverageGas($start_date, $end_date)
