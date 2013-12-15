@@ -89,9 +89,10 @@ function FindIndex($array, $value)
 
 function GetAverageStrom($start_date, $end_date)
 {
-	$db 		= ConnectDB();
-	$result1 	= $db->query("SELECT * FROM electricity WHERE date >= '".$start_date."' AND date <'".$end_date."' ORDER BY date asc");
-	$rows1 		= $result1->fetchAll();
+	$error 			= FALSE;
+	$db 			= ConnectDB();
+	$result1 		= $db->query("SELECT * FROM electricity WHERE date >= '".$start_date."' AND date <'".$end_date."' ORDER BY date asc");
+	$rows1 			= $result1->fetchAll();
 	$date_min		= $rows1[0]['date'];
 	$value_min		= $rows1[0]['value'];
 	$datetime_min 	= new DateTime($date_min);
@@ -102,7 +103,7 @@ function GetAverageStrom($start_date, $end_date)
 
 	$interval  		= date_diff($datetime_min, $datetime_max);
 	$average_gen	= ($value_max - $value_min)/($interval->format('%a'));
-	return $average_gen;
+	return 	array($average_gen, $error);
 }
 
 function GetAverageGas($start_date, $end_date)
@@ -181,7 +182,7 @@ function GetCostGasStawag($average_kWh)
 		$grundpreis 	= 182.50;
 	}
 	
-	$cost = $grundpreis/12 + $average_kWh*30*$arbeitspreis/100; // Grundpreis/12 Monate + Tagesdurchschnitt*30Tage*Arbeitspreis in Cent
+	$cost = $grundpreis/12 + $average_kWh*30*$arbeitspreis/100; // Grundpreis/(12 Monate) + Tagesdurchschnitt*30Tage*Arbeitspreis in Cent
 	return(round($cost, 2));
 }
 ?>
