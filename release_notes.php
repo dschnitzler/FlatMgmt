@@ -4,10 +4,16 @@ error_reporting(E_ALL);
 include('functions.php');
 echo WriteHeader("Release Notes", "general");
 
+echo "<h2>Wohnungsverwaltung 2.1.5 (18.12.2013)</h2>
+<p>Dieses Release bietet folgendes Bugfixing:</p>
+<ul>
+	<li> Eingabe Energe: Z&auml;hlerwerte m&uuml;ssen in einem nachvollziehbaren Bereich sein (Mittelwert +- Standardabweichung).</li>
+</ul>";
+
 echo "<h2>Wohnungsverwaltung 2.1.4 (15.12.2013)</h2>
 <p>Dieses Release bietet folgendes Bugfixing:</p>
 <ul>
-	<li> Eingabe Finanzen + Energie: &Uuml;berpr&uuml;fung des Datums verbessert. Es können keine Komata als Trennzeichen verwendet werden.</li>
+	<li> Eingabe Finanzen + Energie: &Uuml;berpr&uuml;fung des Datums verbessert. Es können keine Kommata als Trennzeichen verwendet werden.</li>
 	<li> Ansicht Energie: Fehlerbenachrichtigung, falls das Startdatum der Analyse größer ist als das Enddatum.</li>
 </ul>";
 

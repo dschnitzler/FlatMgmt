@@ -48,7 +48,7 @@ function WriteFooter()
 {
 	$html = "</div>
 			<div id=\"footer\">
-			<a href=\"release_notes.php\">Version 2.1.4</a> | 
+			<a href=\"release_notes.php\">Version 2.1.5</a> | 
 			&copy; Daniel Schnitzler
 			<br> Hosted on <a href=\"http://raspberrypi.org\">Raspberry Pi</a>
 			</div>
@@ -101,18 +101,24 @@ function GetAverageStrom($start_date, $end_date)
 	$datetime_max 	= new DateTime($date_max);
 
 	$interval  		= date_diff($datetime_min, $datetime_max);
-	$average_gen	= ($value_max - $value_min)/($interval->format('%a'));
-	return 	$average_gen;
+	$average	= ($value_max - $value_min)/($interval->format('%a'));
+	
+	$sum = 0;
+	for ($i = 1; $i < sizeof($rows1); $i += 1)
+	{
+		$cur_interval 	 = date_diff(new DateTime($rows1[$i]['date']),new DateTime($rows1[$i-1]['date']));
+		$sum 			+= pow(($rows1[$i]['value']-$rows1[$i-1]['value'])/($cur_interval->format('%a'))-$average, 2)*$cur_interval->format('%a');
+	}
+	$std = sqrt(1/((sizeof($rows1)-1)-1) * $sum);
+	
+	return array($average, $std);
 }
 
 function GetAverageGas($start_date, $end_date)
 {
-	$z_zahl  = 0.9524;
-	$AB_wert = 11.160; 
-
-	$db 		= ConnectDB();
-	$result1 	= $db->query("SELECT * FROM gas WHERE date >= '".$start_date."' AND date <'".$end_date."' ORDER BY date asc");
-	$rows1 		= $result1->fetchAll();
+	$db 			= ConnectDB();
+	$result1 		= $db->query("SELECT * FROM gas WHERE date >= '".$start_date."' AND date <'".$end_date."' ORDER BY date asc");
+	$rows1 			= $result1->fetchAll();
 
 	$date_min		= $rows1[0]['date'];
 	$value_min		= $rows1[0]['value'];
@@ -123,11 +129,27 @@ function GetAverageGas($start_date, $end_date)
 	$datetime_max 	= new DateTime($date_max);
 
 	$interval  		= date_diff($datetime_min, $datetime_max);
-	$average_gen	= ($value_max - $value_min)/($interval->format('%a'));
+	$average	= ($value_max - $value_min)/($interval->format('%a'));
 	
-	$average_kWh 	= $average_gen * $z_zahl * $AB_wert;
+	$sum = 0;
+	for ($i = 0; $i < sizeof($rows1); $i += 1)
+	{
+		$sum += pow(($rows1[$i]['value']-$average), 2);
+	}
+	$std = sqrt(1/(sizeof($rows1)-1) * $sum);
+	
+	return array($average, $std);
+}
+
+function ConvertGasFromM3ToKwh($value)
+{
+	$z_zahl  = 0.9524;
+	$AB_wert = 11.160; 
+
+	$average_kWh 	= $value * $z_zahl * $AB_wert;
 	return $average_kWh;
 }
+
 function GetCostStromStawag($average_gen)
 {
 	

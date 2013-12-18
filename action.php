@@ -45,6 +45,7 @@ echo WriteFooter();
 
 function input_gas($html)
 {
+	/*** formal check of input data ***/
 	$error = FALSE;
 	if (isset($_POST['day']))
 	{
@@ -87,26 +88,45 @@ function input_gas($html)
 		$error = TRUE;
 	}
 
-	$db = ConnectDb();
-	$result = $db->query("SELECT MAX(value) as max FROM gas");
-	$result1 = $result->fetchAll();
-	$max = $result1[0]['max'];
-	
 	if(!is_numeric($meter))
 	{
 		$html .= WriteError("Ung&uuml;ltiger Z&auml;hlerstand. Bitte den Punkt (.) als Trennzeichen verwenden.");
 		$error = TRUE;
 	}
-	else if($meter < $max)
+
+	if ($error)
+		return $html;		
+	/*** content check of input data ***/
+	
+	$date = date("Y-m-d", strtotime($year."-".$month."-".$day));
+	$db = ConnectDb();
+	$result = $db->query("SELECT MAX(value) as max FROM gas WHERE date <'".$date."'");
+	$result1 = $result->fetchAll();
+	$max_value = $result1[0]['max'];
+	
+	$result = $db->query("SELECT MAX(date) as max FROM gas WHERE date < '".$date."'");
+	$result1 = $result->fetchAll();
+	$max_date = $result1[0]['max'];
+	
+	list($avg_db, $std_db)	= GetAverageGas("2013-01-01", $date);
+	$interval				= date_diff(new DateTime($date), new DateTime($max_date));
+	$avg_data 				= ($meter - $max_value)/($interval->format('%a'));  
+	
+	if($meter < $max_value)
 	{
 		$html .= WriteError("Der Z&auml;hlerstand ist geringer als bereits eingetragene Werte.");
 		$error = TRUE;
 	}
-	
+	else if ($avg_data > $avg_db + $std_db || $avg_data < $avg_db - $std_db)
+	{
+		$html .= WriteError("Der Z&auml;hlerstand liegt außerhalb der g&uuml;ltigen Beschr&auml;nkungen.");
+		$error = TRUE;
+	}
+		
 	if ($error)
 		return $html;
-	
-	$date = date("Y-m-d", strtotime($year."-".$month."-".$day));
+
+	/*** insert data into database ***/
 	$query = "INSERT INTO gas (date, value) VALUES(:date, :value)";
 	$stmt  = $db->prepare($query);
 	$stmt->bindParam(':date', $date);
@@ -123,6 +143,7 @@ function input_gas($html)
 
 function input_strom($html)
 {
+	/*** formal check of input data ***/
 	$error = FALSE;
 	if (isset($_POST['day']))
 	{
@@ -165,26 +186,46 @@ function input_strom($html)
 		$error = TRUE;
 	}
 
-	$db = ConnectDb();
-	$result = $db->query("SELECT MAX(value) as max FROM gas");
-	$result1 = $result->fetchAll();
-	$max = $result1[0]['max'];
-
 	if(!is_numeric($meter))
 	{
 		$html .= WriteError("Ung&uuml;ltiger Z&auml;hlerstand. Bitte den Punkt (.) als Trennzeichen verwenden.");
 		$error = TRUE;
 	}
-	else if($meter < $max)
+	
+	if ($error)
+		return $html;
+	
+	/*** content check of input data ***/
+	
+	$date = date("Y-m-d", strtotime($year."-".$month."-".$day));
+	$db = ConnectDb();
+	$result = $db->query("SELECT MAX(value) as max FROM electricity WHERE date <'".$date."'");
+	$result1 = $result->fetchAll();
+	$max_value = $result1[0]['max'];
+	
+	$result = $db->query("SELECT MAX(date) as max FROM electricity WHERE date < '".$date."'");
+	$result1 = $result->fetchAll();
+	$max_date = $result1[0]['max'];
+	
+	list($avg_db, $std_db)	= GetAverageStrom("2013-01-01", $date);
+	$interval				= date_diff(new DateTime($date), new DateTime($max_date));
+	$avg_data 				= ($meter - $max_value)/($interval->format('%a'));  
+	
+	if($meter < $max_value)
 	{
 		$html .= WriteError("Der Z&auml;hlerstand ist geringer als bereits eingetragene Werte.");
 		$error = TRUE;
 	}
-
+	else if ($avg_data > $avg_db + $std_db || $avg_data < $avg_db - $std_db)
+	{
+		$html .= WriteError("Der Z&auml;hlerstand liegt außerhalb der g&uuml;ltigen Beschr&auml;nkungen.");
+		$error = TRUE;
+	}
+		
 	if ($error)
 		return $html;
-	
-	$date = date("Y-m-d", strtotime($year."-".$month."-".$day));
+
+	/*** insert data into database ***/
 	$query = "INSERT INTO electricity (date, value) VALUES(:date, :value)";
 	$stmt  = $db->prepare($query);
 	$stmt->bindParam(':date', $date);
@@ -283,8 +324,6 @@ function input_money($html)
 	{
 		$html .= WriteError("Die Finanzen konnten nicht eingetragen werden.");
 	}
-
 	return $html;
 }
-
 ?>
