@@ -4,10 +4,16 @@ error_reporting(E_ALL);
 include('functions.php');
 echo WriteHeader("Release Notes", "general");
 
+echo "<h2>Wohnungsverwaltung 2.1.6 (03.03.2014)</h2>
+<p>Dieses Release bietet folgendes Bugfixing:</p>
+<ul>
+	<li> Ansicht Finanzen: Fehler, der beim Jahreswechsel auftrat wurde beseitigt</li>
+</ul>";
+
 echo "<h2>Wohnungsverwaltung 2.1.5 (18.12.2013)</h2>
 <p>Dieses Release bietet folgendes Bugfixing:</p>
 <ul>
-	<li> Eingabe Energe: Z&auml;hlerwerte m&uuml;ssen in einem nachvollziehbaren Bereich sein (Mittelwert +- Standardabweichung).</li>
+	<li> Eingabe Energie: Z&auml;hlerwerte m&uuml;ssen in einem nachvollziehbaren Bereich sein (Mittelwert +- Standardabweichung).</li>
 </ul>";
 
 echo "<h2>Wohnungsverwaltung 2.1.4 (15.12.2013)</h2>
@@ -27,13 +33,13 @@ echo "<h2>Wohnungsverwaltung 2.1.3 (01.12.2013)</h2>
 echo "<h2>Wohnungsverwaltung 2.1.2 (11.11.2013)</h2>
 <p>Dieses Release bietet folgendes Bugfixing:</p>
 <ul>
-	<li> Bei Ung&uuml;ltigen Werten (z.B. Betrag) in der Eingabemaske Energie werden Fehler angezeigt.</li>
+	<li> Bei ung&uuml;ltigen Werten (z.B. Betrag) in der Eingabemaske Energie werden Fehler angezeigt.</li>
 </ul>";
 
 echo "<h2>Wohnungsverwaltung 2.1.1 (06.11.2013)</h2>
 <p>Dieses Release bietet folgendes Bugfixing:</p>
 <ul>
-	<li> Bei Ung&uuml;ltigen Werten (z.B. Betrag) in der Eingabemaske Finanzen werden Fehler angezeigt.</li>
+	<li> Bei ung&uuml;ltigen Werten (z.B. Betrag) in der Eingabemaske Finanzen werden Fehler angezeigt.</li>
 </ul>";
 
 echo "<h2>Wohnungsverwaltung 2.1.0 (27.10.2013)</h2>

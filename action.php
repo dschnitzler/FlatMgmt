@@ -216,9 +216,9 @@ function input_strom($html)
 		$html .= WriteError("Der Z&auml;hlerstand ist geringer als bereits eingetragene Werte.");
 		$error = TRUE;
 	}
-	else if ($avg_data > $avg_db + $std_db || $avg_data < $avg_db - $std_db)
+	else if ($avg_data > $avg_db + 1.5*$std_db || $avg_data < $avg_db - 1.5*$std_db)
 	{
-		$html .= WriteError("Der Z&auml;hlerstand liegt außerhalb der g&uuml;ltigen Beschr&auml;nkungen.");
+		$html .= WriteError("Der Z&auml;hlerstand liegt außerhalb der g&uuml;ltigen Beschr&auml;nkungen. TEST");
 		$error = TRUE;
 	}
 		

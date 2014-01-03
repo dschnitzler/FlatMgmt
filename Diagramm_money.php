@@ -6,12 +6,11 @@ error_reporting(E_ALL);
 	include ("./jpgraph/jpgraph_date.php" );
 	include ("./jpgraph/jpgraph_bar.php");
 	include('functions.php');
-
 $db = ConnectDB();
 $entry_categories1 = $db->query("SELECT category_id, category_name, category_colour FROM money_categories");
 $entry_categories  = $entry_categories1->fetchAll();
 
-$entry_dates1 = $db->query("SELECT MIN(strftime(\"01.%m.%Y\", entry_date)) AS date_min, MAX(strftime(\"01.%m.%Y\", entry_date)) AS date_max from money_entries");
+$entry_dates1 = $db->query("SELECT strftime(\"01.%m.%Y\", MIN(entry_date)) AS date_min, strftime(\"01.%m.%Y\", MAX(entry_date)) AS date_max from money_entries");
 $entry_dates = $entry_dates1->fetchAll();
 
 $min_date		= $entry_dates[0]['date_min'];
@@ -22,7 +21,7 @@ $interval  		= date_diff($date_min, $date_max);
 $dates 			= array();
 $dates2 		= array();
 
-for($i=0; $i<=$interval->format('%m');$i++)
+for($i=0; $i<=$interval->format('%m')+12*$interval->format('%y');$i++)
 {
 	$dates[$i]  = date("01.m.Y", strtotime($min_date." + ".$i." months"));
 	$dates2[$i] = date("M Y", strtotime($min_date." + ".$i." months"));
@@ -74,5 +73,5 @@ $graph->yaxis->title->Set("€");
 
 $graph->SetShadow();
 //$graph->legend->Pos(0.05,0.1);
-	$graph->Stroke();
+$graph->Stroke();
 ?>
