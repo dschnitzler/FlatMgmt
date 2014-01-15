@@ -9,7 +9,7 @@ function WriteHeader($title, $topic)
 			<head>
 			<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />
 			<title>".$title."</title>
-			<link rel=\"stylesheet\" type=\"text/css\" href=\"stylesheet_".$topic.".css\">
+			<link rel=\"stylesheet\" type=\"text/css\" href=\"./stylesheets/stylesheet_".$topic.".css\">
 			</head>
 			<body>
 			<div id='container'>
@@ -48,7 +48,7 @@ function WriteFooter()
 {
 	$html = "</div>
 			<div id=\"footer\">
-			<a href=\"release_notes.php\">Version 2.1.6</a> | 
+			<a href=\"release_notes.php\">Version 2.2.0</a> | 
 			&copy; Daniel Schnitzler
 			<br> Hosted on <a href=\"http://raspberrypi.org\">Raspberry Pi</a>
 			</div>
@@ -85,6 +85,22 @@ function FindIndex($array, $value)
 			return $i;
 	}
 	return -1;
+}
+
+function LookupTelephoneCost($date)
+{
+	$value = 0;
+	
+	$db = ConnectDB();
+	$lookup_telephones1 = $db->query("SELECT telephone_startdate, telephone_cost FROM telephone");
+	$lookup_telephone = $lookup_telephones1->fetchAll();
+	
+	for ($i = 0; $i < sizeof($lookup_telephone); $i++)
+	{
+		if ($date >= new DateTime($lookup_telephone[$i]['telephone_startdate']))
+			$value = $lookup_telephone[$i]['telephone_cost'];
+	}
+	return $value;
 }
 
 function GetAverageStrom($start_date, $end_date)

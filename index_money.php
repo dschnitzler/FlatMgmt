@@ -13,10 +13,10 @@ $diff_month = $difference->format('%m') + 12*$difference->format('%y');
 // Kosten für die Miete
 $miete 			= 640;
 
-// Berechnung der durchschnittlichen Internetkosten. (Die erste Rechnung wird ignoriert, da sie die Fritzbox enthielt.
-$internet1  	= $db->query("SELECT SUM(entry_value) as sum FROM money_entries WHERE entry_category == 4 AND entry_date < '".$date."' AND entry_date >= '2013-03-01'");
+// Berechnung der durchschnittlichen Internetkosten.
+$internet1  	= $db->query("SELECT SUM(entry_value) as sum FROM money_entries WHERE entry_category == 4 AND entry_date < '".$date."'");
 $internet1  	= $internet1->fetchAll();
-$internet 		= $internet1[0]["sum"]/($diff_month-3);
+$internet 		= $internet1[0]["sum"]/($diff_month-2) + LookupTelephoneCost(DateTime::createFromFormat('Y-m-d', $date));
 
 // Kosten für Strom und Gas
 $strom_gas 		= 50;

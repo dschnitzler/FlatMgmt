@@ -38,10 +38,7 @@ $html = "<form item=\"id\" action=\"action.php?action=input_money\" method=\"pos
 			<tr>
 				<td>Betrag:</td>
 				<td>
-					<input name=\"value\" type=\"number\" size=\"4\" maxlength=\"10\" value=\"0.00\" required>
-				</td>
-				<td>
-					&euro;
+					<input name=\"value\" type=\"number\" size=\"4\" maxlength=\"10\" value=\"0.00\" required> &euro;
 				</td>
 			</tr>
 			<tr>
@@ -55,6 +52,9 @@ for ($i = 0; $i < sizeof($shops); $i++)
 }
 $html .="		</select>
 				</td>
+				<td> 
+					<a href=\"input_shop.php\"> <b> + </b> </a>
+				</td>
 			</tr>
 			<tr>
 				<td>Kategorie:</td>
@@ -67,11 +67,14 @@ for ($i = 0; $i < sizeof($categories); $i++)
 }
 $html .="		</select>
 			</td>
+			<td>
+				<a href=\"input_category.php\"> <b> + </b> </a>
+			</td>
 			</tr>
 			<tr>
 				<td></td>
 				<td>
-					<br><input type=\"submit\" id=\"submit\" name=\"submit\" value=\"Submit\" />
+					<br><input type=\"submit\" id=\"submit\" name=\"submit\" value=\"Hinzuf&uuml;gen\" />
 				</td>
 			</tr>
 			</tbody>

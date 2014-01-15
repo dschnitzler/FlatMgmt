@@ -6,6 +6,7 @@ error_reporting(E_ALL);
 	include ("./jpgraph/jpgraph_date.php" );
 	include ("./jpgraph/jpgraph_bar.php");
 	include('functions.php');
+	
 $db = ConnectDB();
 $entry_categories1 = $db->query("SELECT category_id, category_name, category_colour FROM money_categories");
 $entry_categories  = $entry_categories1->fetchAll();
@@ -35,7 +36,14 @@ for($i=0; $i<sizeof($entry_categories);$i++)
 	$entries[$i] = $entry_categories[$i]['category_id'];
 	for ($j=0;$j<sizeof($dates);$j++)
 	{
-		$ydata[$i][$j] = 0;
+		if ($entries[$i] == 4)
+		{
+			$ydata[$i][$j] = LookupTelephoneCost(DateTime::createFromFormat('d.m.Y', $dates[$j]));
+		}
+		else
+		{
+			$ydata[$i][$j] = 0;
+		}
 	}
 }
 
@@ -47,7 +55,7 @@ for($i=0; $i<sizeof($sum_result);$i++)
 	$sum_value	= $sum_result[$i]['sum_values'];
 	$index_category	= findIndex($entries, $sum_result[$i]['entry_category']);
 	$index_date	= findIndex($dates, $sum_result[$i]['date']);
-	$ydata[$index_category][$index_date] = $sum_value;
+	$ydata[$index_category][$index_date] += $sum_value;
 }
 
 $barplots = array();
@@ -70,7 +78,6 @@ $graph->xaxis->SetTickLabels($dates2);
 $graph->xaxis->title->Set("Zeit");
 //$graph->xaxis->SetLabelAngle(45);
 $graph->yaxis->title->Set("€");
-
 $graph->SetShadow();
 //$graph->legend->Pos(0.05,0.1);
 $graph->Stroke();

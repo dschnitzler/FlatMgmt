@@ -50,28 +50,25 @@ else
 				<tr>
 					<td>Monat:</td>
 					<td>
-						<input name =\"month\" type=\"number\" size=\"4\" maxlength=\"2\" required>
+						<input name =\"month\" type=\"number\" size=\"4\" maxlength=\"2\" value=\"".date("m")."\" required>
 					</td>
 				</tr>
 				<tr>
 					<td>Jahr:</td>
 					<td>
-						<input name=\"year\" type=\"number\" size=\"4\" maxlength=\"4\" minlength=\"4\" value=\"2013\" required>
+						<input name=\"year\" type=\"number\" size=\"4\" maxlength=\"4\" minlength=\"4\" value=\"".date("Y")."\" required>
 					</td>
 				</tr>
 				<tr>
-					<td>Z&auml;hlerstand</td>
+					<td>Z&auml;hlerstand:</td>
 					<td>
-						<input name=\"meter\" type=\"number\" size=\"37\" maxlength=\"50\" required>
-					</td>
-					<td>
-						".$unit."
+						<input name=\"meter\" type=\"number\" size=\"10\" maxlength=\"15\" required> ".$unit."
 					</td>
 				</tr>
 				<tr>
 					<td></td>
 					<td>
-						<br><input type=\"submit\" id=\"submit\" name=\"submit\" value=\"Submit\" />
+						<br><input type=\"submit\" id=\"submit\" name=\"submit\" value=\"Hinzuf&uuml;gen\" />
 					</td>
 				</tr>
 				</tbody>

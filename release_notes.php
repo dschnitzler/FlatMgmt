@@ -4,10 +4,16 @@ error_reporting(E_ALL);
 include('functions.php');
 echo WriteHeader("Release Notes", "general");
 
-echo "<h2>Wohnungsverwaltung 2.1.6 (03.03.2014)</h2>
+echo "<h2>Wohnungsverwaltung 2.2.0 (03.01.2014)</h2>
+<p>Dieses Release bietet folgende neue Funktionalit&auml;t:</p>
+<ul>
+	<li> Eingabe Finanzen: Die Liste der Gesch&auml;fte und Kategorien kann in der Oberfl&auml;che erweitert werden.
+</ul>";
+
+echo "<h2>Wohnungsverwaltung 2.1.6 (03.01.2014)</h2>
 <p>Dieses Release bietet folgendes Bugfixing:</p>
 <ul>
-	<li> Ansicht Finanzen: Fehler, der beim Jahreswechsel auftrat wurde beseitigt</li>
+	<li> Ansicht Finanzen: Fehler, der beim Jahreswechsel auftrat, wurde beseitigt</li>
 </ul>";
 
 echo "<h2>Wohnungsverwaltung 2.1.5 (18.12.2013)</h2>

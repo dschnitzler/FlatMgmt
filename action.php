@@ -31,6 +31,16 @@ else
 			$html = input_money($html);
 			$topic= "money";
 			break;
+		case ("input_shop"):
+			$head = "Hinzuf&uuml;gen eines Gesch&auml;fts";
+			$html = input_shop($html);
+			$topic = "money";
+			break;
+		case ("input_category"):
+			$head = "Hinzuf&uuml;gen einer Kategorie";
+			$html = input_category($html);
+			$topic = "money";
+			break;
 		default:
 			$head = "Fehler";
 			$html = WriteError("Angegebene Aktion nicht bekannt.");
@@ -323,6 +333,69 @@ function input_money($html)
 	else
 	{
 		$html .= WriteError("Die Finanzen konnten nicht eingetragen werden.");
+	}
+	return $html;
+}
+
+function input_shop($html)
+{
+	$error = FALSE;
+	if (isset($_POST['shop']))
+	{
+		$shop 		= $_POST['shop'];
+	}
+	else
+	{
+		$html .= WriteError("Gesch&auml;ft wurde nicht angegeben.");
+		$error = TRUE;
+	}
+	
+	if ($error)
+		return $html;
+		
+	$db = ConnectDb();
+	$query = "INSERT INTO shops (shop_name) VALUES(:shop)";
+	$stmt  = $db->prepare($query);
+	$stmt->bindParam(':shop', $shop);
+	if ($stmt->execute())
+	{	
+		$html .= WriteOK("Das Gesch&auml;ft wurde eingetragen und kann nun verwendet werden.");
+	}
+	else
+	{
+		$html .= WriteError("Das Gesch&auml;ft konnte nicht eingetragen werden.");
+	}
+	return $html;
+}
+
+function input_category($html)
+{
+	$error = FALSE;
+	if (isset($_POST['category']))
+	{
+		$category 		= $_POST['category'];
+	}
+	else
+	{
+		$html .= WriteError("Kategorie wurde nicht angegeben.");
+		$error = TRUE;
+	}
+	
+	if ($error)
+		return $html;
+		
+	$db = ConnectDb();
+	$query = "INSERT INTO money_categories (category_name) VALUES(:category)";
+	$stmt  = $db->prepare($query);
+	$stmt->bindParam(':category', $category);
+	
+	if ($stmt->execute())
+	{	
+		$html .= WriteOK("Die Kategorie wurde eingetragen und kann nun verwendet werden.");
+	}
+	else
+	{
+		$html .= WriteError("Die Kategorie konnte nicht eingetragen werden.");
 	}
 	return $html;
 }
