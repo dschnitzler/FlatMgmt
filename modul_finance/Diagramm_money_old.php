@@ -80,6 +80,5 @@ $graph->xaxis->title->Set("Zeit");
 $graph->yaxis->title->Set("€");
 $graph->SetShadow();
 //$graph->legend->Pos(0.05,0.1);
-//$graph->Stroke();
-$graph->Stroke('myimage1.png');
+$graph->Stroke();
 ?>

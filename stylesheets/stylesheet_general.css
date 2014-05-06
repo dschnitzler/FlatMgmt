@@ -163,3 +163,77 @@ body
 	clear:left; 
 	color: #000;
 }
+
+.onoffswitch {
+    position: relative; 
+	width: 116px;
+	margin-left: 200px;
+}
+
+.onoffswitch-label {
+    display: block;
+	overflow: hidden;
+	cursor: pointer;
+    border: 2px solid #FFFFFF;
+	border-radius: 50px;
+}
+
+.onoffswitch-inner {
+    width: 200%;
+	margin-left: -100%;
+}
+
+.onswitch-inner {
+    content: "AN";
+    padding-left: 14px;
+    background-color: #EEEEEE; 
+	color: #2FCCFF;
+	float: left; 
+	width: 100%; 
+	height: 41px; 
+	line-height: 41px;
+    font-size: 25px; 
+	font-family: Trebuchet, Arial, sans-serif; 
+	font-weight: bold;
+    -moz-box-sizing: border-box; 
+	-webkit-box-sizing: border-box; 
+	box-sizing: border-box;
+}
+
+.offswitch-inner {
+    content: "AUS";
+    padding-right: 14px;
+    background-color: #EFEEFE;
+	color: #999999;
+    text-align: right;
+	float: left; 
+	width: 100%; 
+	height: 41px; 
+	line-height: 41px;
+    font-size: 25px; 
+	font-family: Trebuchet, Arial, sans-serif; 
+	font-weight: bold;
+    -moz-box-sizing: border-box; 
+	-webkit-box-sizing: border-box; 
+	box-sizing: border-box;
+}
+
+.offswitch-switch {
+    width: 35px; 
+	margin: 3px;
+    background: #A1A1A1;
+    border: 2px solid #FFFFFF; 
+	border-radius: 50px;
+    position: absolute; 
+	top: 0; bottom: 0; 
+	right: 71px;}
+	
+.onswitch-switch {
+    width: 35px; 
+	margin: 3px;
+    background: #2FCCFF;
+    border: 2px solid #FFFFFF; 
+	border-radius: 50px;
+    position: absolute; 
+	top: 0; bottom: 0; 
+	right: 0px;}

@@ -1,13 +1,14 @@
 <?php
 ini_set('display_errors', true);
+
 error_reporting(E_ALL);
-	include ("./jpgraph/jpgraph.php");
-	include ("./jpgraph/jpgraph_line.php");
-	include ("./jpgraph/jpgraph_date.php" );
-	include ("./jpgraph/jpgraph_bar.php");
-	include('./modul_standard/functions.php');
-	
+include_once("../jpgraph/jpgraph.php");
+include_once("../jpgraph/jpgraph_line.php");
+include_once("../jpgraph/jpgraph_date.php" );
+include_once("../jpgraph/jpgraph_bar.php");
+include_once('../modul_standard/functions.php');
 $db = ConnectDB();
+
 $entry_categories1 = $db->query("SELECT category_id, category_name, category_colour FROM money_categories");
 $entry_categories  = $entry_categories1->fetchAll();
 
@@ -80,6 +81,46 @@ $graph->xaxis->title->Set("Zeit");
 $graph->yaxis->title->Set("€");
 $graph->SetShadow();
 //$graph->legend->Pos(0.05,0.1);
-//$graph->Stroke();
-$graph->Stroke('myimage1.png');
+$graph->Stroke();
+/*
+
+// Die Werte der 2 Linien in ein Array speichern
+$ydata = array(11,3,8,12,5,1,9,13,5,7);
+$ydata2 = array(1,19,15,7,22,14,5,9,21,13);
+
+// Grafik generieren und Grafiktyp festlegen
+$graph = new Graph(300,200,"auto");    
+$graph->SetScale("textlin");
+
+// Die Zwei Linien generieren
+$lineplot=new LinePlot($ydata);
+
+$lineplot2=new LinePlot($ydata2);
+
+// Die Linien zu der Grafik hinzufügen
+$graph->Add($lineplot);
+$graph->Add($lineplot2);
+
+// Grafik formatieren
+$graph->img->SetMargin(40,20,20,40);
+$graph->title->Set("Example 4");
+$graph->xaxis->title->Set("X-title");
+$graph->yaxis->title->Set("Y-title");
+
+$graph->title->SetFont(FF_FONT1,FS_BOLD);
+$graph->yaxis->title->SetFont(FF_FONT1,FS_BOLD);
+$graph->xaxis->title->SetFont(FF_FONT1,FS_BOLD);
+
+$lineplot->SetColor("blue");
+$lineplot->SetWeight(2);
+
+$lineplot2->SetColor("orange");
+$lineplot2->SetWeight(2);
+
+$graph->yaxis->SetColor("red");
+$graph->yaxis->SetWeight(2);
+$graph->SetShadow();
+
+// Grafik anzeigen
+$graph->Stroke();*/
 ?>
