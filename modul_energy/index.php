@@ -32,7 +32,7 @@ $end_date 	= $end_year.  "-".$end_month.  "-01";
 $datetime_start = new DateTime($start_date);
 $datetime_end 	= new DateTime($end_date);
 
-$formular = "<form item=\"id\" action=\"index_energy.php\" method=\"post\">
+$formular = "<form item=\"id\" action=\"index.php\" method=\"post\">
 			<table border=\"0\" cellspacing=\"0\" cellpadding=\"2\">
 			  <tbody>
 				<tr>
