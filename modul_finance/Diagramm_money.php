@@ -64,7 +64,6 @@ for($i=0; $i<sizeof($entries);$i++)
 {
 	$barplots[$i] = new BarPlot($ydata[$i]);
 	$barplots[$i]->SetLegend($entry_categories[$i]['category_name']);
-	$barplots[$i]->SetColor('blue');
 }
 
 $graph	= new Graph(770,300,"auto");
@@ -73,54 +72,21 @@ $graph->SetScale("textlin");
 $gbplot = new AccBarPlot($barplots);
 $graph->Add($gbplot);
 
-$graph->SetMargin(60,20,30,90);
+for($i=0; $i<sizeof($entries);$i++)
+{
+	$barplots[$i]->SetFillColor($entry_categories[$i]['category_colour']);
+	$barplots[$i]->SetColor($entry_categories[$i]['category_colour']);
+}
+
+
+$graph->img->SetMargin(60,0,0,80); //90
 $graph->title->Set("Finanzübersicht");
 $graph->xaxis->SetTickLabels($dates2);
 $graph->xaxis->title->Set("Zeit");
-//$graph->xaxis->SetLabelAngle(45);
+$graph->xaxis->SetLabelAngle(45);
 $graph->yaxis->title->Set("€");
 $graph->SetShadow();
-//$graph->legend->Pos(0.05,0.1);
+$graph->legend->Pos(0.05,0.1);
+$graph->legend->SetColumns(2);
 $graph->Stroke();
-/*
-
-// Die Werte der 2 Linien in ein Array speichern
-$ydata = array(11,3,8,12,5,1,9,13,5,7);
-$ydata2 = array(1,19,15,7,22,14,5,9,21,13);
-
-// Grafik generieren und Grafiktyp festlegen
-$graph = new Graph(300,200,"auto");    
-$graph->SetScale("textlin");
-
-// Die Zwei Linien generieren
-$lineplot=new LinePlot($ydata);
-
-$lineplot2=new LinePlot($ydata2);
-
-// Die Linien zu der Grafik hinzufügen
-$graph->Add($lineplot);
-$graph->Add($lineplot2);
-
-// Grafik formatieren
-$graph->img->SetMargin(40,20,20,40);
-$graph->title->Set("Example 4");
-$graph->xaxis->title->Set("X-title");
-$graph->yaxis->title->Set("Y-title");
-
-$graph->title->SetFont(FF_FONT1,FS_BOLD);
-$graph->yaxis->title->SetFont(FF_FONT1,FS_BOLD);
-$graph->xaxis->title->SetFont(FF_FONT1,FS_BOLD);
-
-$lineplot->SetColor("blue");
-$lineplot->SetWeight(2);
-
-$lineplot2->SetColor("orange");
-$lineplot2->SetWeight(2);
-
-$graph->yaxis->SetColor("red");
-$graph->yaxis->SetWeight(2);
-$graph->SetShadow();
-
-// Grafik anzeigen
-$graph->Stroke();*/
 ?>

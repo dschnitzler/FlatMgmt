@@ -114,11 +114,11 @@ if (!$error)
 	$avg_gas_stawag 			= GetCostGasStawag(ConvertGasFromM3ToKwh($avg_gas));
 	$html .= "	<h2>Strom</h2>
 		<img src=\"Diagramm_energy.php?item=strom&amp;start_date=".$start_date."&amp;end_date=".$end_date."\" width=\"770\" height=\"300\">
-		Durchschnittliche Stromkosten pro Monat: ".$avg_strom_stawag."&euro;<br>
+		Durchschnittliche Stromkosten pro Monat: ".round($avg_strom_stawag, 2)."&euro;<br>
 		Aktueller Abschlag 35.00&euro;<br>
 		<h2>Gas</h2>
 		<img src=\"Diagramm_energy.php?item=gas&amp;start_date=".$start_date."&amp;end_date=".$end_date."\"   width=\"770\" height=\"300\">
-		Durchschnittliche Gaskosten pro Monat: ".$avg_gas_stawag."&euro;<br>
+		Durchschnittliche Gaskosten pro Monat: ".round($avg_gas_stawag, 2)."&euro;<br>
 		Aktueller Abschlag 15.00&euro;<br>";
 }
 

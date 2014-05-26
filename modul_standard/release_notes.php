@@ -4,6 +4,12 @@ error_reporting(E_ALL);
 include('functions.php');
 echo WriteHeader("Release Notes", "general");
 
+echo "<h2>Wohnungsverwaltung 3.0.1 (26.05.2014)</h2>
+<p>Dieses Release bietet folgende neue Funktionalit&auml;t:</p>
+<ul>
+	<li> Kleine &Auml;nderungen in den Diagrammen, damit der Text vollst&auml;ndig lesbar ist.</li>
+</ul>";
+
 echo "<h2>Wohnungsverwaltung 3.0 (06.05.2014)</h2>
 <p>Dieses Release bietet folgende neue Funktionalit&auml;t:</p>
 <ul>
@@ -11,7 +17,6 @@ echo "<h2>Wohnungsverwaltung 3.0 (06.05.2014)</h2>
 	<li> Herunterfahren des Raspberry Pis.</li>
 	<li> Neues Paket 'Automation'.</li>
 </ul>";
-
 
 echo "<h2>Wohnungsverwaltung 2.2.0 (15.01.2014)</h2>
 <p>Dieses Release bietet folgende neue Funktionalit&auml;t:</p>

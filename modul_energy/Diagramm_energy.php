@@ -97,7 +97,7 @@ $barplot	= new Barplot($ydata_bar, $xdata);
 $graph->Add($barplot);
 $graph->Add($avgline);
 
-$graph->SetMargin(60,20,30,90);
+$graph->SetMargin(60,0,0,90);
 $graph->title->Set($item."verbrauch");
 
 $graph->xaxis->title->Set("Zeit");

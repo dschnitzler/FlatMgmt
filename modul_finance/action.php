@@ -121,7 +121,7 @@ function input_money($html)
 	$stmt->bindParam(':value', $value);
 	if ($stmt->execute())
 	{	
-		$html .= WriteOK("Die Finanzen wurden eingetragen");
+		$html .= WriteOK("Die Finanzen wurden eingetragen. Weitere <a href=\"input_money.php\"><u>Finanzeingabe</u></a>");
 	}
 	else
 	{
