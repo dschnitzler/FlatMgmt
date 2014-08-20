@@ -201,7 +201,7 @@ function GetCostStromStawag($average_gen)
 		$grundpreis 	= 117.73;
 	}
 	
-	$cost = $grundpreis/12 + $average_gen*30*$arbeitspreis/100;
+	$cost = $grundpreis/11 + $average_gen*33*$arbeitspreis/100;
 	return(round($cost,2));
 }
 
@@ -224,7 +224,7 @@ function GetCostGasStawag($average_kWh)
 		$grundpreis 	= 182.50;
 	}
 	
-	$cost = $grundpreis/12 + $average_kWh*30*$arbeitspreis/100; // Grundpreis/(12 Monate) + Tagesdurchschnitt*30Tage*Arbeitspreis in Cent
+	$cost = $grundpreis/11 + $average_kWh*33*$arbeitspreis/100; // Grundpreis/(12 Monate) + Tagesdurchschnitt*30Tage*Arbeitspreis in Cent
 	return(round($cost, 2));
 }
 /*****************************************************************************************************************************************
