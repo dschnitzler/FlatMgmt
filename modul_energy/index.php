@@ -115,11 +115,11 @@ if (!$error)
 	$html .= "	<h2>Strom</h2>
 		<img src=\"Diagramm_energy.php?item=strom&amp;start_date=".$start_date."&amp;end_date=".$end_date."\" width=\"770\" height=\"300\">
 		Durchschnittliche Stromkosten pro Monat: ".round($avg_strom_stawag, 2)."&euro;<br>
-		Aktueller Abschlag 35.00&euro;<br>
+		Aktueller Abschlag 34.00&euro;<br>
 		<h2>Gas</h2>
 		<img src=\"Diagramm_energy.php?item=gas&amp;start_date=".$start_date."&amp;end_date=".$end_date."\"   width=\"770\" height=\"300\">
 		Durchschnittliche Gaskosten pro Monat: ".round($avg_gas_stawag, 2)."&euro;<br>
-		Aktueller Abschlag 15.00&euro;<br>";
+		Aktueller Abschlag 16.00&euro;<br>";
 }
 
 echo WriteHeader("Energie", "energy");
